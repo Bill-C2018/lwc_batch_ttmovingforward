@@ -1,20 +1,40 @@
 global class updateBatchTestObject implements Database.Batchable<sObject>  {
 
-/*
     Integer recordsProcessed = 0;
-    global Database.QueryLocator start(Database.BatchableContext bc) {
-        List<BatchableTestObject__c> bo = new List<BatchableTestObject__c>();
+/*
+//this builds but is using iterable - which is subject to limits
+//
+    
+    List<BatchTestObject__c> listToBatch = new List<BatchTestObject__c>();
 
-        
+    public void setListToParse() {
+        listToBatch = [SELECT Id, Name FROM BatchTestObject__c];
     }
 
-    global void execute(Database.BatchableContext bc, List<BatchableTestObject__c> scope) {
-        system.debug('+++++ in execute');
+    public List<SObject> start(Database.BatchableContext context) {   
 
-        for (BatchableTestObject__c b: scope) {
-            b.Name = b.Name + 'testing';
+        return listToBatch;
+    }
+
+    global void execute(Database.BatchableContext bc, List<sObject> scope) {
+        for (sObject b: scope) {
+
         }
-        recordsProcessed = recoredsProcessed + scope.size();
+
+        recordsProcessed = recordsProcessed + scope.size();
+    }
+*/
+
+
+// this uses the queryLocator version so is exempt from most limits
+
+
+    public Database.QueryLocator start(Database.BatchableContext bc) {
+        return Database.getQueryLocator([Select Name From BatchTestObject__c ]);
+    }
+
+    public void execute(Database.BatchableContext bc, List<BatchTestObject__c> scope) {
+        recordsProcessed = recordsProcessed + scope.size();
     }
 
     global void finish(Database.BatchableContext bc) {
@@ -27,6 +47,5 @@ global class updateBatchTestObject implements Database.Batchable<sObject>  {
 
         system.debug('Apex job id: ' + job);
     }
-*/
 
 }
