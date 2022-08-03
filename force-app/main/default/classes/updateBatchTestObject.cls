@@ -2,7 +2,7 @@ global class updateBatchTestObject implements Database.Batchable<sObject>  {
 
     Integer recordsProcessed = 0;
 /*
-//this builds but is using iterable - which is subject to limits
+//this is using iterable - which is subject to limits
 //
     
     List<BatchTestObject__c> listToBatch = new List<BatchTestObject__c>();
@@ -25,6 +25,12 @@ global class updateBatchTestObject implements Database.Batchable<sObject>  {
     }
 */
 
+//to launch from console 
+/*
+Id jobid = Database.executeBatch(new updateBatchTestObject(), 200);
+system.debug('job id ' + jobid);
+*/
+
 
 // this uses the queryLocator version so is exempt from most limits
 
@@ -34,6 +40,13 @@ global class updateBatchTestObject implements Database.Batchable<sObject>  {
     }
 
     public void execute(Database.BatchableContext bc, List<BatchTestObject__c> scope) {
+        List<BatchTestObject__c> l = new List<BatchTestObject__c>();
+        for(BatchTestObject__c b: scope) {
+            b.Name = b.Name + ' Modified ';
+            l.add(b);
+        }
+
+        update l;
         recordsProcessed = recordsProcessed + scope.size();
     }
 
