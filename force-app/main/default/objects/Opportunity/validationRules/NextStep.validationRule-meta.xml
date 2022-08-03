@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NextStep</fullName>
+    <active>true</active>
+    <description>t if the Next Step field is blank, 
+the Stage cannot be updated to Proposal/Price Quot</description>
+    <errorConditionFormula>AND(ISPICKVAL( StageName , &apos;Proposal/Price Quote&apos;)  , 
+ISBLANK( NextStep ))</errorConditionFormula>
+    <errorMessage>Next step must be set</errorMessage>
+</ValidationRule>

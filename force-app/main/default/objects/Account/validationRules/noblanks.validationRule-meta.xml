@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>noblanks</fullName>
+    <active>true</active>
+    <description>ensure there’s a value in the Type, Industry, 
+and Phone Number field.</description>
+    <errorConditionFormula>OR(
+ ISPICKVAL( Industry , &apos;&apos;) ,
+ ISPICKVAL( Type , &apos;&apos;) ,
+  ISBLANK( Phone )
+  )</errorConditionFormula>
+    <errorMessage>enter something</errorMessage>
+</ValidationRule>
