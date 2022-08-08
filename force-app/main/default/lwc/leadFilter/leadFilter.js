@@ -7,7 +7,6 @@ import f3 from '@salesforce/apex/LeadsController.getWorkingContactedLeads';
 import f4 from '@salesforce/apex/LeadsController.getClosedConvertedLeads';
 import f5 from '@salesforce/apex/LeadsController.getClosedNotConvertedLeadsName';
 
-
 import NAME_FIELD from '@salesforce/schema/Lead.Name';
 import COMPANY_FIELD from '@salesforce/schema/Lead.Company';
 import EMAIL_FIELD from '@salesforce/schema/Lead.Email';
@@ -41,7 +40,6 @@ export default class LeadFilter extends LightningElement {
         foo()
         .then(data => {
             this.leadList = [...data]
-            console.log(this.leadList)
         })
         .catch(error => {
             this.showError(error.body.message + ' bummer!')
@@ -54,5 +52,7 @@ export default class LeadFilter extends LightningElement {
     wowamazing3()  { this.getData(f3); }
     wowamazing4()  { this.getData(f4); }
     wowamazing5()  { this.getData(f5); }
+
+
 
 }
