@@ -1,22 +1,41 @@
 <template>
 
-    <!-- could be cleaned up with lightning layout items bet ehh -->
-    <lightning-card icon-name="custom101">
+    
+    <lightning-card icon-name="custom:custom101" title="Lead Filter">
         <div >
-        <p class="slds-text-heading_medium">Select a status</p>
-        <br>
-        <lightning-button label="All" id="a" onclick={wowamazing1}></lightning-button>
-        <lightning-button label="Open – Not Contacted" id="b" onclick={wowamazing2}></lightning-button>
-        <lightning-button label="Working Contacted" id="c" onclick={wowamazing3}></lightning-button>
-        <lightning-button label="Closed – Converted" id="d" onclick={wowamazing4}></lightning-button>
-        <lightning-button label=" Closed – Not Converted" id="e" onclick={wowamazing5}></lightning-button>
-        
+            <lightning-layout>
+                <lightning-layout-item padding="around-small">
+                    <p class="slds-text-heading_medium">Select a status </p>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
 
-        <lightning-datatable 
-            data={leadList}
-            columns={leadTable} 
-            key-field="Email">
-        </lightning-datatable>
+
+
+        <div> 
+            <lightning-layout>
+                <lightning-layout-item padding="around-small">      
+                    <lightning-button label="All" id="a" onclick={wowamazing1}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <lightning-button label="Open – Not Contacted" id="b" onclick={wowamazing2}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <lightning-button label="Working Contacted" id="c" onclick={wowamazing3}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <lightning-button label="Closed – Converted" id="d" onclick={wowamazing4}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <lightning-button label=" Closed – Not Converted" id="e" onclick={wowamazing5}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <lightning-datatable 
+                data={leadList}
+                columns={leadTable} 
+                key-field="Email">
+            </lightning-datatable>
 
         </div>
     </lightning-card>
