@@ -2,8 +2,13 @@ public with sharing class LeadsController {
 
     private final static String busyWork = 'SELECT Name, Company, Email, Phone, Status FROM Lead ';
     private static List<Lead> queryForLeads(String q) {
+        List<Lead> store = new List<Lead>();
         try {
-            return  Database.query(q,System.AccessLevel.USER_MODE);
+            for(List<Lead> l:  Database.query(q,System.AccessLevel.USER_MODE)) {
+                store.addAll(l);
+            }
+            return store;
+
         } 
         catch(DmlException e) {
             throw e;
