@@ -34,7 +34,7 @@ public with sharing class AccountControllerExtension {
 
 
     public List<Account> accList { 
-        get { getAccounts(); return accList;}
+        get { return accList;}
         set;
     }
 
