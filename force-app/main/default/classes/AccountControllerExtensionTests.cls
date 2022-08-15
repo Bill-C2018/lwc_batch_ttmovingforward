@@ -64,6 +64,11 @@ public with sharing class AccountControllerExtensionTests {
         showResults(ext.accList, 'F');
         system.assertEquals(1,ext.accList.size());
 
+        ext.minInput = '5';
+        ext.getAccounts();
+        showResults(ext.accList,'G');
+        system.assertEquals(2, ext.accList.size());
+
     }
 
 
