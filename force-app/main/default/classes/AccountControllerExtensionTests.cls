@@ -30,31 +30,31 @@ public with sharing class AccountControllerExtensionTests {
         
         showResults(ext.accList, 'A');
 
-        ext.setSearchtext('bob');
+        ext.searchtext = 'bob';
         showResults(ext.accList, 'B');
         system.assertEquals(1,ext.accList.size());
 
-        ext.setSearchtext('bob\'AND');
+        ext.searchtext = 'bob\'AND';
         showResults(ext.accList, 'C');
-        system.assertEquals('bob\\\'AND', ext.getSearchtext());
+        system.assertEquals('bob\\\'AND', ext.searchtext);
 
-        ext.setMinInput('23n');
-        system.assertEquals('0',ext.getMinInput());
+        ext.minInput = '23n';
+        system.assertEquals('0',ext.minInput);
 
-        ext.setMaxInput('99j');
-        system.assertEquals('999999999',ext.getMaxInput());
+        ext.maxInput = '99j';
+        system.assertEquals('999999999',ext.maxInput);
 
-        ext.setSearchtext('');
+        ext.searchtext = '';
         system.assertEquals(2,ext.accList.size());
         showResults(ext.accList, 'D');
 
-        ext.setMinInput('0');
-        ext.setMaxInput('10000');
+        ext.minInput = '0';
+        ext.maxInput = '10000';
         showResults(ext.accList, 'E');
         system.assertEquals(1,ext.accList.size());
 
-        ext.setMinInput('10000');
-        ext.setMaxInput('100000000');
+        ext.minInput = '10000';
+        ext.maxInput = '100000000';
         showResults(ext.accList, 'F');
         system.assertEquals(1,ext.accList.size());
 

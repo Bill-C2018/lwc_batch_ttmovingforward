@@ -1,39 +1,37 @@
 public with sharing class AccountControllerExtension {
 
-    private final Account acct;
-    
-    
-    private String searchtext;
-    public String getSearchtext() { return searchtext; }
-    public void setSearchtext(String value) { 
-        system.debug('text input = ' + value);
-        searchtext = String.escapeSingleQuotes(value); 
-    }
-   
 
-    private String maxInput;
-
-    public String getMaxInput() { return maxInput; }
-    public void setMaxInput(String value) { 
-        if (value != null && value.isNumeric()) {
-            maxInput = value;
-        } else {
-            maxInput = '999999999';
-        }
-     }
-
-
-
-    private String minInput;
-    public String getMinInput() { return minInput; }
-    public void setMinInput(String value) {
-        
-        if( value != null && value.isNumeric() ) {
-            minInput = value;
-        } else {
-            minInput = '0';
+    public String searchText {
+        get;
+        set {
+            searchtext = String.escapeSingleQuotes(value);             
         }
     }
+    
+
+    public String maxInput {
+        get;
+        set {
+            if (value != null && value.isNumeric()) {
+                maxInput = value;
+            } else {
+                maxInput = '999999999';
+            }
+        }
+    }
+
+    public String minInput {
+        get;
+        set {
+            if( value != null && value.isNumeric() ) {
+                minInput = value;
+            } else {
+                minInput = '0';
+            }
+    
+        }
+    }
+
 
     public List<Account> accList { 
         get { getAccounts(); return accList;}
